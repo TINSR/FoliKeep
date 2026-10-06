@@ -15,12 +15,15 @@ class PdfEngineTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val file = File.createTempFile("render", ".pdf", context.cacheDir)
         try {
-            PdfDocument().use { pdf ->
+            val pdf = PdfDocument()
+            try {
                 val page = pdf.startPage(PdfDocument.PageInfo.Builder(600, 800, 1).create())
                 page.canvas.drawColor(Color.WHITE)
                 page.canvas.drawRect(300f, 0f, 600f, 800f, Paint().apply { color = Color.BLACK })
                 pdf.finishPage(page)
                 file.outputStream().use(pdf::writeTo)
+            } finally {
+                pdf.close()
             }
             AndroidPdfEngine().use { engine ->
                 assertEquals(1, engine.open(file).pageCount)
