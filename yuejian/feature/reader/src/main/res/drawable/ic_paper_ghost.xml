@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paper ghost chosen by the user: a floating sheet, folded corner and two quiet eyes. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp" android:height="44dp"
+    android:viewportWidth="100" android:viewportHeight="100">
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M19,80 C26,69 29,53 33,36 C38,16 53,8 74,13 L88,30 C90,46 86,65 82,80 C80,90 78,95 73,92 C67,88 63,85 58,88 C51,92 46,85 40,82 C34,79 28,84 21,83 C18,83 17,82 19,80 Z" />
+    <path android:fillColor="#00000000" android:strokeColor="#000000"
+        android:strokeWidth="2.4" android:strokeLineJoin="round" android:strokeLineCap="round"
+        android:pathData="M74,13 L72,28 L88,31" />
+    <path android:fillColor="#000000"
+        android:pathData="M49,38 C52,38 53.5,42 52.5,46 C51.5,50 49,52 47,50.5 C44.5,49 45,44 46,41 C46.5,39 47.5,38 49,38 Z M65,41 C68,41 69,45 68,49 C67,53 64.5,54.5 62.5,53 C60.5,51.5 61,47 62,44 C62.5,42 63.5,41 65,41 Z" />
+</vector>

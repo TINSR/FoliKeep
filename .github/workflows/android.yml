@@ -1,0 +1,70 @@
+name: Android checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      device_tests:
+        description: Run Android emulator tests
+        required: false
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: android-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: yuejian
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
+      - run: chmod +x gradlew
+      - run: ./gradlew :app:assembleDebug :app:assembleRelease :core:model:test :core:ai:testDebugUnitTest :core:markdown:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest :core:database:assembleDebugAndroidTest :core:files:assembleDebugAndroidTest :core:pdf:assembleDebugAndroidTest
+      - name: Source and schema checks
+        run: python3 tools/verify-source-sql.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-build-and-reports
+          path: |
+            yuejian/app/build/outputs/apk/
+            yuejian/**/build/reports/
+  tablet-tests:
+    if: github.event_name == 'workflow_dispatch' && inputs.device_tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Tablet instrumentation
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: Nexus 10
+          script: cd yuejian && chmod +x gradlew && ./gradlew :app:connectedDebugAndroidTest :core:database:connectedDebugAndroidTest :core:files:connectedDebugAndroidTest :core:pdf:connectedDebugAndroidTest
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tablet-reports
+          path: yuejian/**/build/reports/androidTests/

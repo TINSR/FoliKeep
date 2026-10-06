@@ -1,0 +1,36 @@
+name: Bug report
+description: 报告可复现的问题
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: 请勿上传 API Key、发布密钥、私人备份或含个人信息的完整资料。
+  - type: input
+    id: version
+    attributes:
+      label: 应用版本
+      placeholder: 1.1.0
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 设备和 Android 版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: 截图或可公开的最小样本

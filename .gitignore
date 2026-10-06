@@ -1,0 +1,30 @@
+.tooling/
+**/.gradle/
+**/.kotlin/
+**/build/
+**/local.properties
+*.jks
+*.keystore
+
+# Formal signing identities and encrypted local credentials
+.signing/
+*.p12
+*.pfx
+
+# Local deliverables; binaries belong in GitHub Releases.
+/安装包/
+/发布包/
+/备份/
+/宣传视频/
+/开源发布/
+/tmp/
+**/.idea/
+**/.DS_Store
+*.apk
+*.aab
+*.apks
+*.hprof
+.env
+.env.*
+!.env.example
+*.iml

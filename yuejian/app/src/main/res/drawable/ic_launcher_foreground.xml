@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep the supplied artwork inside the launcher mask's safe area. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp">
+        <bitmap android:src="@drawable/folikeep_launcher_art" android:gravity="fill" android:filter="true" />
+    </item>
+</layer-list>

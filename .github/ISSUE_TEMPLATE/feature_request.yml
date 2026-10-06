@@ -1,0 +1,15 @@
+name: Feature request
+description: 说明想解决的实际问题
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 在什么情况下遇到什么问题？
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: 希望怎样改？
+    validations:
+      required: true

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 回答渲染模块：无组件、无权限，仅提供 Markdown/公式渲染能力与本地资源。 -->
+</manifest>

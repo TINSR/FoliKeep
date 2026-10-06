@@ -1,0 +1,196 @@
+/*
+ * FoliKeep AI 回答渲染样式。
+ * 页面只加载本文件中定义的本地资源；所有颜色/字号通过 #yj-theme 由宿主注入 CSS 变量。
+ * 纵向滚动由外层 Compose LazyColumn 负责，这里强制关闭纵向滚动。
+ */
+:root {
+    --yj-fg: #1b1b1b;
+    --yj-bg: rgba(0, 0, 0, 0);
+    --yj-muted: #5f6368;
+    --yj-accent: #0b6bcb;
+    --yj-line: #d6d6d6;
+    --yj-code-bg: #f3f4f6;
+    --yj-quote-bar: #cfcfcf;
+    --yj-fs: 15px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--yj-fg);
+    font-family: -apple-system, "Roboto", "Noto Sans", "Noto Sans CJK SC", "Source Han Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: var(--yj-fs);
+    line-height: 1.75;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* display:flow-root 建立 BFC，避免子元素外边距塌陷导致测量高度小于实际内容高度 */
+#yj-root {
+    display: flow-root;
+    margin: 0;
+    padding: 0;
+}
+
+#yj-root > *:first-child {
+    margin-top: 0 !important;
+}
+
+#yj-root > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* 兜底：渲染层不加载任何图片/媒体/嵌入内容 */
+img, iframe, object, embed, video, audio, form {
+    display: none !important;
+}
+
+.yj-p {
+    margin: 0 0 .7em;
+}
+
+.yj-h1, .yj-h2, .yj-h3, .yj-h4, .yj-h5, .yj-h6 {
+    margin: 1.15em 0 .5em;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.yj-h1 { font-size: 1.32em; }
+.yj-h2 { font-size: 1.22em; }
+.yj-h3 { font-size: 1.12em; }
+.yj-h4 { font-size: 1.04em; }
+.yj-h5 { font-size: 1em; }
+.yj-h6 { font-size: .95em; color: var(--yj-muted); }
+
+.yj-hr {
+    height: 0;
+    margin: 1em 0;
+    border: 0;
+    border-top: 1px solid var(--yj-line);
+}
+
+.yj-ul, .yj-ol {
+    margin: 0 0 .7em;
+    padding-left: 1.45em;
+}
+
+.yj-list-loose > .yj-li {
+    margin: .35em 0;
+}
+
+.yj-li {
+    margin: .1em 0;
+}
+
+.yj-li > .yj-ul, .yj-li > .yj-ol {
+    margin: .2em 0 .2em 0;
+}
+
+.yj-quote {
+    margin: .55em 0 .7em;
+    padding: .05em 0 .05em .85em;
+    border-left: 3px solid var(--yj-quote-bar);
+    color: var(--yj-muted);
+}
+
+.yj-quote > *:last-child {
+    margin-bottom: 0;
+}
+
+.yj-code {
+    padding: .1em .35em;
+    border-radius: 4px;
+    background: var(--yj-code-bg);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .9em;
+    overflow-wrap: break-word;
+}
+
+.yj-pre {
+    margin: .55em 0 .75em;
+    padding: .7em .8em;
+    border-radius: 8px;
+    background: var(--yj-code-bg);
+    color: var(--yj-fg);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .88em;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.yj-scroller {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.yj-table {
+    width: auto;
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: .95em;
+}
+
+.yj-th, .yj-td {
+    padding: .35em .6em;
+    border: 1px solid var(--yj-line);
+    vertical-align: top;
+    white-space: normal;
+}
+
+.yj-th {
+    font-weight: 600;
+    background: var(--yj-code-bg);
+}
+
+.yj-a {
+    color: var(--yj-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* 公式：用 span + display:block 承载，行宽不足时由 .yj-scroller 横向滚动，不撑破面板 */
+.yj-math-block {
+    display: block;
+    margin: .65em 0;
+    padding: 2px 0;
+}
+
+.yj-math-error {
+    color: #c62828;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+.katex {
+    font-size: 1.06em;
+}
+
+.katex-display {
+    margin: 0;
+    padding: 1px 0;
+}
+
+.katex-display > .katex {
+    white-space: normal;
+}
