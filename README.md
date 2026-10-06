@@ -8,6 +8,8 @@
 
 主要在安卓平板上使用，也有手机窄屏布局。需要 Android 8.0 或以上；当前版本是 **1.1.0**。
 
+[下载 APK](https://github.com/TINSR/FoliKeep/releases/latest) · [58 秒功能演示](https://github.com/TINSR/FoliKeep/releases/download/v1.1.0/FoliKeep-demo.mp4)
+
 ## 怎么用
 
 ### 导入资料
