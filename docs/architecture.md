@@ -18,7 +18,7 @@ FoliKeep 是原生安卓应用。界面用 Jetpack Compose，业务状态在 Vie
 | `core:designsystem` | 公共主题与界面基础样式 |
 | `build-logic` | Android Library convention plugin |
 
-Room 是文档、标注、问答与卡片的持久事实来源，DataStore 保存设置。页面位图是可丢弃的内存缓存，不是文档数据。
+Room 是文档、标注、问答与卡片的持久事实来源，DataStore 保存设置。页面位图保存在内存缓存中，可随时释放；文档数据由持久存储维护。
 
 ## 阅读与导入
 
