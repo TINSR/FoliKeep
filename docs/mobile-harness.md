@@ -19,7 +19,7 @@
 
 如果指近期的 Meta Muse，它是个人 agent 产品。Meta 的[官方架构说明](https://research.meta.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse)描述了独立云端计算环境，手机和网页客户端连接云端执行层。
 
-它把任务执行、工具、持久状态与权限控制组织起来。可以从中参考资料边界和权限分离的思路，但不能据此把 FoliKeep 说成同类通用自动执行助手。
+它把任务执行、工具、持久状态与权限控制组织起来。可以从中参考资料边界和权限分离的思路。
 
 另有名为 [MUSE: A Unified Agentic Harness for MLLMs](https://github.com/Jianglin954/MUSE) 的研究项目，围绕多模态任务、结构化执行、验证和修复。它是独立的研究项目。Muse Spark 则是模型名称，也不能和 agent 产品或 harness 互换。
 
